@@ -1,12 +1,16 @@
-# One Metric Protocol — Smart Contracts
+# One Metric Protocol
 
-A DeFi index token protocol built on BNB Smart Chain (BSC) that tracks the Crypto Metric Index (CMI) — a diversified basket of leading cryptocurrencies — as a single, collateral-backed, on-chain unit.
+One Metric Protocol is a DeFi index token protocol built on BNB Smart Chain (BSC). It tracks the Crypto Metric Index (CMI) — a diversified basket of leading cryptocurrencies — as a single, collateral-backed, on-chain unit (OMP).
+
+This repository contains the core smart contracts powering the protocol. The full protocol includes on-chain smart contracts, an automated CMI publisher, a proof-of-reserve engine, a transaction executor, and a public-facing web application.
 
 ## Technology Stack
 
 - **Blockchain:** BNB Smart Chain (primary deployment)
 - **Smart Contracts:** Solidity ^0.8.28
-- **Frontend:** Next.js + wagmi + ethers.js ([app.onemetric.org](https://app.onemetric.org))
+- **Frontend:** Next.js + wagmi + ethers.js
+- **Backend:** Python (CMI publisher, PoR engine, indexer, flow tracker)
+- **Infrastructure:** Google Cloud Platform (Compute Engine, Cloud Scheduler, Secret Manager)
 - **Development:** Hardhat, OpenZeppelin Contracts v5
 - **Verification:** BSCScan source verification
 
@@ -54,6 +58,17 @@ contracts/
     ISellVault.sol        — SellVault interface
 hardhat.config.ts         — Hardhat config targeting BNB Smart Chain (Chain ID: 56)
 ```
+
+## Protocol Components
+
+| Component | Description |
+|---|---|
+| Smart Contracts | On-chain mint/redeem logic, oracle, and proof of reserve (this repo) |
+| CMI Publisher | Automated service that calculates and pushes the CMI price on-chain every 10 seconds |
+| Proof of Reserve Engine | Runs every 15 minutes, verifies collateral, and anchors report hashes to `PoRRegistry` |
+| Transaction Executor | Handles buy/sell vault operations triggered by mint and redemption flows |
+| Web Application | Public dashboard and mint/redeem interface at [app.onemetric.org](https://app.onemetric.org) |
+| Indexer | Indexes on-chain events into a queryable database for analytics |
 
 ## How It Works
 
