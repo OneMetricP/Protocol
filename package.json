@@ -1,0 +1,20 @@
+{
+  "name": "omp-contracts",
+  "version": "1.0.0",
+  "description": "One Metric Protocol smart contracts — BNB Smart Chain",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "verify:omp": "hardhat verify --network bsc 0x95cc1F0392BAC5212A04365c598fBC32ffE06D7d",
+    "verify:oracle": "hardhat verify --network bsc 0x958EDD15b23BdCdAAB1D4979536bB4cadb14306a"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "dotenv": "^16.0.0",
+    "hardhat": "^2.22.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0"
+  }
+}
